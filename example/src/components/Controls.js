@@ -4,14 +4,6 @@ import TrackPlayer from 'react-native-track-player';
 import { ControlButton } from './ControlButton';
 import { usePlaybackStateIs } from '../hooks';
 
-const skipToNext = () => {
-  TrackPlayer.skipToNext();
-};
-
-const skipToPrevious = () => {
-  TrackPlayer.skipToPrevious();
-};
-
 export function Controls({ queue, track }) {
   const nextTrack = useNextTrack(queue, track);
   const previousTrack = usePreviousTrack(queue, track);
@@ -23,6 +15,15 @@ export function Controls({ queue, track }) {
       TrackPlayer.play();
     }
   }, [isPlaying]);
+
+  const skipToNext = useCallback(() => {
+    TrackPlayer.skipToNext();
+  }, []);
+
+  const skipToPrevious = useCallback(() => {
+    TrackPlayer.skipToPrevious();
+  }, []);
+
   return (
     <View style={styles.controls}>
       <ControlButton
