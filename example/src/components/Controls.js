@@ -1,25 +1,12 @@
 import React, { useMemo, useCallback } from 'react';
 import { StyleSheet, View } from 'react-native';
-import TrackPlayer from 'react-native-track-player';
+import TrackPlayer, { usePlaybackState } from 'react-native-track-player';
 import { ControlButton } from './ControlButton';
-import { usePlaybackStateIs, useDebounce } from '../hooks';
+import { useDebounce } from '../hooks';
 
 export function Controls({ queue, track }) {
   const nextTrack = useNextTrack(queue, track);
   const previousTrack = usePreviousTrack(queue, track);
-  const isPlaying = usePlaybackStateIs(
-    TrackPlayer.STATE_PLAYING
-  );
-  const isBuffering = usePlaybackStateIs(
-    TrackPlayer.STATE_BUFFERING
-  );
-  const togglePlayback = useCallback(() => {
-    if (isPlaying) {
-      TrackPlayer.pause();
-    } else {
-      TrackPlayer.play();
-    }
-  }, [isPlaying]);
 
   const skipToNext = useCallback(() => {
     TrackPlayer.skipToNext();
@@ -28,10 +15,6 @@ export function Controls({ queue, track }) {
   const skipToPrevious = useCallback(() => {
     TrackPlayer.skipToPrevious();
   }, []);
-  const controlTitle = useDebounce(
-    isPlaying ? 'Pause' : isBuffering ? 'Buffering' : 'Play',
-    200
-  );
   return (
     <View style={styles.controls}>
       <ControlButton
@@ -39,10 +22,7 @@ export function Controls({ queue, track }) {
         active={!!previousTrack}
         onPress={previousTrack ? skipToPrevious : null}
       />
-      <ControlButton
-        title={controlTitle}
-        onPress={togglePlayback}
-      />
+      <PlayButton />
       <ControlButton
         title=">>"
         active={!!nextTrack}
@@ -50,6 +30,27 @@ export function Controls({ queue, track }) {
       />
     </View>
   );
+}
+
+const PlayButton = () => {
+  const playbackState = usePlaybackState();
+  const isPlaying = playbackState === TrackPlayer.STATE_PLAYING;
+  const isBuffering = playbackState === TrackPlayer.STATE_BUFFERING;
+  const togglePlayback = useCallback(() => {
+    if (isPlaying) {
+      TrackPlayer.pause();
+    } else {
+      TrackPlayer.play();
+    }
+  }, [isPlaying]);
+  const controlTitle = useDebounce(
+    isPlaying ? 'Pause' : isBuffering ? 'Buffering' : 'Play',
+    200
+  );
+  return <ControlButton
+    title={controlTitle}
+    onPress={togglePlayback}
+  />
 }
 
 const useNextTrack = (queue, currentTrack) =>
