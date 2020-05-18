@@ -2,12 +2,17 @@ import React, { useMemo, useCallback } from 'react';
 import { StyleSheet, View } from 'react-native';
 import TrackPlayer from 'react-native-track-player';
 import { ControlButton } from './ControlButton';
-import { usePlaybackStateIs } from '../hooks';
+import { usePlaybackStateIs, useDebounce } from '../hooks';
 
 export function Controls({ queue, track }) {
   const nextTrack = useNextTrack(queue, track);
   const previousTrack = usePreviousTrack(queue, track);
-  const isPlaying = usePlaybackStateIs(TrackPlayer.STATE_PLAYING);
+  const isPlaying = usePlaybackStateIs(
+    TrackPlayer.STATE_PLAYING
+  );
+  const isBuffering = usePlaybackStateIs(
+    TrackPlayer.STATE_BUFFERING
+  );
   const togglePlayback = useCallback(() => {
     if (isPlaying) {
       TrackPlayer.pause();
@@ -23,7 +28,10 @@ export function Controls({ queue, track }) {
   const skipToPrevious = useCallback(() => {
     TrackPlayer.skipToPrevious();
   }, []);
-
+  const controlTitle = useDebounce(
+    isPlaying ? 'Pause' : isBuffering ? 'Buffering' : 'Play',
+    200
+  );
   return (
     <View style={styles.controls}>
       <ControlButton
@@ -32,7 +40,7 @@ export function Controls({ queue, track }) {
         onPress={previousTrack ? skipToPrevious : null}
       />
       <ControlButton
-        title={isPlaying ? 'Pause' : 'Play'}
+        title={controlTitle}
         onPress={togglePlayback}
       />
       <ControlButton
@@ -62,17 +70,17 @@ const usePreviousTrack = (queue, currentTrack) =>
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1
+    flex: 1,
   },
   text: {
     fontSize: 18,
-    textAlign: 'center'
+    textAlign: 'center',
   },
   inactive: {
-    opacity: 0.5
+    opacity: 0.5,
   },
   controls: {
     marginVertical: 20,
-    flexDirection: 'row'
-  }
+    flexDirection: 'row',
+  },
 });

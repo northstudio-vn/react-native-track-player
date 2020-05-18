@@ -26,7 +26,9 @@ const useCurrentTrack = () => {
   TrackPlayer.useTrackPlayerEvents(
     [TrackPlayerEvents.PLAYBACK_TRACK_CHANGED],
     ({ nextTrack }) => {
-      setTrackId(nextTrack);
+      if (nextTrack) {
+        setTrackId(nextTrack);
+      }
     }
   );
 

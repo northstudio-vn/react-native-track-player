@@ -21,13 +21,12 @@ const styles = StyleSheet.create({
   }
 });
 
-const hitSlop = { top: 20, left: 20, bottom: 20, right: 20 };
 export function ControlButton({ title, onPress, active = true }) {
   const text = <Text style={[styles.text, !active && styles.inactive]}>{title}</Text>;
   return onPress
     ?
       <TouchableOpacity
-        hitSlop={hitSlop}
+        hitSlop={{ top: 20, left: 20, bottom: 20, right: 20 }}
         style={styles.container}
         onPress={active ? onPress : null}
       >

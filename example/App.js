@@ -1,12 +1,10 @@
-import React, { useEffect, useState, useMemo } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import React, { useEffect, useState } from 'react';
+import { StyleSheet, View } from 'react-native';
 import TrackPlayer from 'react-native-track-player';
 
 import Player from './src/components/Player';
 import playlistData from './src/data/playlist.json';
 import localTrack from './src/resources/pure.m4a';
-
-import { usePlaybackState } from './src/hooks';
 
 const tracks = [
   ...playlistData,
@@ -40,13 +38,10 @@ const setupPlayerP = (async() => {
 
 export default function App() {
   const playerIsSetup = useSetupPlayer();
-  const playbackState = usePlaybackState();
-  const label = usePlaybackLabel(playbackState);
   const queue = useQueue(playerIsSetup, tracks);
   return playerIsSetup ? (
     <View style={styles.container}>
       <Player style={styles.player} queue={queue} />
-      <Text style={styles.state}>{label}</Text>
     </View>
   ) : null;
 }
@@ -88,23 +83,11 @@ const useSetupPlayer = () => {
   return complete;
 };
 
-const usePlaybackLabel = playbackState =>
-  useMemo(
-    () =>
-      ({
-        [TrackPlayer.STATE_NONE]: 'None',
-        [TrackPlayer.STATE_PLAYING]: 'Playing',
-        [TrackPlayer.STATE_PAUSED]: 'Paused',
-        [TrackPlayer.STATE_STOPPED]: 'Stopped',
-        [TrackPlayer.STATE_BUFFERING]: 'Buffering',
-      }[playbackState]),
-    [playbackState],
-  );
-
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: 'center',
+    justifyContent: 'center',
     backgroundColor: '#F5FCFF',
   },
   description: {
