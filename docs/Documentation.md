@@ -251,15 +251,17 @@ Some parameters are unused depending on platform.
 | options.capabilities | `array` of [Capability Constants](#capability) | The media controls that will be enabled | ✓ | ✓ | ✓ |
 | options.notificationCapabilities | `array` of [Capability Constants](#capability) | The buttons that it will show in the notification. Defaults to `data.capabilities`  | ✓ | ✗ | ✗ |
 | options.compactCapabilities | `array` of [Capability Constants](#capability) | The buttons that it will show in the compact notification | ✓ | ✗ | ✗ |
-| options.icon | [Resource Object](#resource-object) | The notification icon | ✓ | ✗ | ✗ |
-| options.playIcon | [Resource Object](#resource-object) | The play icon | ✓ | ✗ | ✗ |
-| options.pauseIcon | [Resource Object](#resource-object) | The pause icon | ✓ | ✗ | ✗ |
-| options.stopIcon | [Resource Object](#resource-object) | The stop icon | ✓ | ✗ | ✗ |
-| options.previousIcon | [Resource Object](#resource-object) | The previous icon | ✓ | ✗ | ✗ |
-| options.nextIcon | [Resource Object](#resource-object) | The next icon | ✓ | ✗ | ✗ |
-| options.rewindIcon | [Resource Object](#resource-object) | The jump backward icon | ✓ | ✗ | ✗ |
-| options.forwardIcon | [Resource Object](#resource-object) | The jump forward icon | ✓ | ✗ | ✗ |
+| options.icon | [Resource Object](#resource-object) | The notification icon¹ | ✓ | ✗ | ✗ |
+| options.playIcon | [Resource Object](#resource-object) | The play icon¹ | ✓ | ✗ | ✗ |
+| options.pauseIcon | [Resource Object](#resource-object) | The pause icon¹ | ✓ | ✗ | ✗ |
+| options.stopIcon | [Resource Object](#resource-object) | The stop icon¹ | ✓ | ✗ | ✗ |
+| options.previousIcon | [Resource Object](#resource-object) | The previous icon¹ | ✓ | ✗ | ✗ |
+| options.nextIcon | [Resource Object](#resource-object) | The next icon¹ | ✓ | ✗ | ✗ |
+| options.rewindIcon | [Resource Object](#resource-object) | The jump backward icon¹ | ✓ | ✗ | ✗ |
+| options.forwardIcon | [Resource Object](#resource-object) | The jump forward icon¹ | ✓ | ✗ | ✗ |
 | options.color | `number` | The notification color in an ARGB hex | ✓ | ✗ | ✗ |
+
+*¹ - The custom icons will only work in release builds*
 
 #### `play()`
 Plays or resumes the current track.
@@ -307,7 +309,7 @@ Gets the duration of the current track in seconds.
 Note: `react-native-track-player` is a streaming library, which means it slowly buffers the track and doesn't know exactly when it ends.
 The duration returned by this function is determined through various tricks and *may not be exact or may not be available at all*.
 
-You should **not** trust this function. You should retrieve the duration from a database and feed it to the `duration` parameter in the [Track Object](#track-object).
+You should only trust the result of this function if you included the `duration` property in the [Track Object](#track-object).
 
 **Returns:** `Promise<number>`
 
