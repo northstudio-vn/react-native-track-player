@@ -1,4 +1,4 @@
-import React, { useMemo, useCallback } from 'react';
+import React, { useMemo, useCallback, useEffect } from 'react';
 import { StyleSheet, View } from 'react-native';
 import TrackPlayer, { usePlaybackState } from 'react-native-track-player';
 import { ControlButton } from './ControlButton';
@@ -15,18 +15,35 @@ export function Controls({ queue, track }) {
   const skipToPrevious = useCallback(() => {
     TrackPlayer.skipToPrevious();
   }, []);
+
+  useEffect(() => {
+    const capabilities = [
+      TrackPlayer.CAPABILITY_PLAY,
+      TrackPlayer.CAPABILITY_PAUSE,
+      TrackPlayer.CAPABILITY_STOP,
+    ];
+    if (nextTrack) {
+      capabilities.push(TrackPlayer.CAPABILITY_SKIP_TO_NEXT);
+    }
+    if (previousTrack) {
+      capabilities.push(TrackPlayer.CAPABILITY_SKIP_TO_PREVIOUS);
+    }
+
+    TrackPlayer.updateOptions({ capabilities });
+  }, [nextTrack, previousTrack]);
+
   return (
     <View style={styles.controls}>
       <ControlButton
         title="<<"
         active={!!previousTrack}
-        onPress={previousTrack ? skipToPrevious : null}
+        onPress={previousTrack ? skipToPrevious : undefined}
       />
       <PlayButton />
       <ControlButton
         title=">>"
         active={!!nextTrack}
-        onPress={nextTrack ? skipToNext : null}
+        onPress={nextTrack ? skipToNext : undefined}
       />
     </View>
   );
@@ -47,11 +64,8 @@ const PlayButton = () => {
     isPlaying ? 'Pause' : isBuffering ? 'Buffering' : 'Play',
     200
   );
-  return <ControlButton
-    title={controlTitle}
-    onPress={togglePlayback}
-  />
-}
+  return <ControlButton title={controlTitle} onPress={togglePlayback} />;
+};
 
 const useNextTrack = (queue, currentTrack) =>
   useMemo(() => {
