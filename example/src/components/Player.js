@@ -7,7 +7,6 @@ import { Controls } from './Controls';
 
 export default function Player({ style, queue }) {
   const track = useCurrentTrack();
-  console.log(track);
   return (
     <View style={[styles.card, style]}>
       <Image style={styles.cover} source={{ uri: track.artwork }} />

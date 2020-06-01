@@ -1,0 +1,38 @@
+[
+  {
+    "id": "ghost1",
+    "url": "https://files.freemusicarchive.org/storage-freemusicarchive-org/music/Ziklibrenbib/The_Ghost_in_Your_Piano/The_Ghost_in_your_piano/The_Ghost_in_Your_Piano_-_01_-_Climb.mp3",
+    "title": "Climb",
+    "artist": "The Ghost in Your Piano",
+    "album": "The Ghost in Your Piano",
+    "artwork": "https://files.freemusicarchive.org/storage-freemusicarchive-org/images/albums/The_Ghost_in_Your_Piano_-_The_Ghost_in_your_piano_-_2019072755213837.jpg?width=290&height=290",
+    "duration": 208
+  },
+  {
+    "id": "ghost2",
+    "url": "https://files.freemusicarchive.org/storage-freemusicarchive-org/music/Ziklibrenbib/The_Ghost_in_Your_Piano/The_Ghost_in_your_piano/The_Ghost_in_Your_Piano_-_02_-_Flux.mp3",
+    "title": "Flux",
+    "artist": "The Ghost in Your Piano",
+    "album": "The Ghost in Your Piano",
+    "artwork": "https://files.freemusicarchive.org/storage-freemusicarchive-org/images/albums/The_Ghost_in_Your_Piano_-_The_Ghost_in_your_piano_-_2019072755213837.jpg?width=290&height=290",
+    "duration": 170
+  },
+  {
+    "id": "ghost3",
+    "url": "https://files.freemusicarchive.org/storage-freemusicarchive-org/music/Ziklibrenbib/The_Ghost_in_Your_Piano/The_Ghost_in_your_piano/The_Ghost_in_Your_Piano_-_03_-_Adventure.mp3",
+    "title": "Adventure",
+    "artist": "The Ghost in Your Piano",
+    "album": "The Ghost in Your Piano",
+    "artwork": "https://files.freemusicarchive.org/storage-freemusicarchive-org/images/albums/The_Ghost_in_Your_Piano_-_The_Ghost_in_your_piano_-_2019072755213837.jpg?width=290&height=290",
+    "duration": 114
+  },
+  {
+    "id": "ghost4",
+    "url": "https://files.freemusicarchive.org/storage-freemusicarchive-org/music/Ziklibrenbib/The_Ghost_in_Your_Piano/The_Ghost_in_your_piano/The_Ghost_in_Your_Piano_-_04_-_Lullaby.mp3",
+    "title": "Lullaby",
+    "artist": "The Ghost in Your Piano",
+    "album": "The Ghost in Your Piano",
+    "artwork": "https://files.freemusicarchive.org/storage-freemusicarchive-org/images/albums/The_Ghost_in_Your_Piano_-_The_Ghost_in_your_piano_-_2019072755213837.jpg?width=290&height=290",
+    "duration": 108
+  }
+]

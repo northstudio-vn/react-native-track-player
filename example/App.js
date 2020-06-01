@@ -1,22 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { StyleSheet, View } from 'react-native';
 import TrackPlayer from 'react-native-track-player';
-
 import Player from './src/components/Player';
-import playlistData from './src/data/playlist.json';
-import localTrack from './src/resources/pure.m4a';
-
-const tracks = [
-  ...playlistData,
-  {
-    id: 'local-track',
-    url: localTrack,
-    title: 'Pure (Demo)',
-    artist: 'David Chavez',
-    artwork: 'https://i.picsum.photos/id/500/200/200.jpg',
-    duration: 28,
-  },
-];
+import { playlists } from './src/playlists'
 
 const setupPlayerP = (async() => {
   await TrackPlayer.setupPlayer();
@@ -38,12 +24,19 @@ const setupPlayerP = (async() => {
 
 export default function App() {
   const playerIsSetup = useSetupPlayer();
-  const queue = useQueue(playerIsSetup, tracks);
+  const [activePlaylist, playlists] = usePlaylist();
+  const queue = useQueue(playerIsSetup, activePlaylist);
   return playerIsSetup ? (
     <View style={styles.container}>
       <Player style={styles.player} queue={queue} />
     </View>
   ) : null;
+}
+
+const usePlaylist = () => {
+  const [currentIndex, setCurrentIndex] = useState(1);
+  const playlist = playlists[currentIndex];
+  return [playlist, playlists];
 }
 
 const useQueue = (playerReady, tracks) => {

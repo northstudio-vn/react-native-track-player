@@ -1,0 +1,29 @@
+[
+  {
+    "id": "ljs1",
+    "url": "https://files.freemusicarchive.org/storage-freemusicarchive-org/music/ccCommunity/Dee_Yan-Key/Lounge_Jazz_Symphony/Dee_Yan-Key_-_01_-_I_Sonata_Slow_and_stately.mp3",
+    "title": "I. Sonata: Slow and stately",
+    "artist": "Dee Yan-Key",
+    "album": "Lounge Jazz Symphony",
+    "artwork": "https://files.freemusicarchive.org/storage-freemusicarchive-org/images/albums/Dee_Yan-Key_-_Lounge_Jazz_Symphony_-_20190417120104628.jpg?width=290&height=290",
+    "duration": 208
+  },
+  {
+    "id": "ljs2",
+    "url": "https://files.freemusicarchive.org/storage-freemusicarchive-org/music/ccCommunity/Dee_Yan-Key/Lounge_Jazz_Symphony/Dee_Yan-Key_-_02_-_II_Intermezzo__Broadly.mp3",
+    "title": "II. Intermezzo: Broadly",
+    "artist": "Dee Yan-Key",
+    "album": "Lounge Jazz Symphony",
+    "artwork": "https://files.freemusicarchive.org/storage-freemusicarchive-org/images/albums/Dee_Yan-Key_-_Lounge_Jazz_Symphony_-_20190417120104628.jpg?width=290&height=290",
+    "duration": 170
+  },
+  {
+    "id": "ljs3",
+    "url": "https://files.freemusicarchive.org/storage-freemusicarchive-org/music/ccCommunity/Dee_Yan-Key/Lounge_Jazz_Symphony/Dee_Yan-Key_-_03_-_III_Finale_Slowly.mp3",
+    "title": "III. Finale: Slowly (10:20)",
+    "artist": "Dee Yan-Key",
+    "album": "Lounge Jazz Symphony",
+    "artwork": "https://files.freemusicarchive.org/storage-freemusicarchive-org/images/albums/Dee_Yan-Key_-_Lounge_Jazz_Symphony_-_20190417120104628.jpg?width=290&height=290",
+    "duration": 114
+  }
+]
