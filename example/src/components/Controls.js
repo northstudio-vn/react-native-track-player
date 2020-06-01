@@ -51,8 +51,11 @@ export function Controls({ queue, track }) {
 
 const PlayButton = () => {
   const playbackState = usePlaybackState();
-  const isPlaying = playbackState === TrackPlayer.STATE_PLAYING;
-  const isBuffering = playbackState === TrackPlayer.STATE_BUFFERING;
+  const isPlaying = [
+    TrackPlayer.STATE_PLAYING,
+    TrackPlayer.STATE_BUFFERING,
+  ].includes(playbackState);
+
   const togglePlayback = useCallback(() => {
     if (isPlaying) {
       TrackPlayer.pause();
@@ -60,10 +63,7 @@ const PlayButton = () => {
       TrackPlayer.play();
     }
   }, [isPlaying]);
-  const controlTitle = useDebounce(
-    isPlaying ? 'Pause' : isBuffering ? 'Buffering' : 'Play',
-    200
-  );
+  const controlTitle = useDebounce(isPlaying ? 'Pause' : 'Play', 200);
   return <ControlButton title={controlTitle} onPress={togglePlayback} />;
 };
 
